@@ -21,7 +21,7 @@ public class PCM {
             StringBuilder bits = new StringBuilder();
 
             // sample every few pixels horizontally
-            for (int x = 0; x < width; x += 5) {
+            for (int x = 0; x < width; x += 200) {
                 int y = height / 2; // sample mid-height
                 int rgb = img.getRGB(x, y);
 
@@ -47,3 +47,9 @@ public class PCM {
         }
     }
 }
+
+
+
+
+// In line 24 , we can increase or decrease the sampple gap , i.e , x += sampleGap 
+// in our code , we sample every 5 pixels across the width of the image which means more samples and more output bits.

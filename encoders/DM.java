@@ -21,7 +21,7 @@ public class DM {
             StringBuilder bits = new StringBuilder();
             int prevGray = 128; // start mid-level
 
-            for (int x = 0; x < width; x += 5) {
+            for (int x = 0; x < width; x += 200) {
                 int y = height / 2;
                 int rgb = img.getRGB(x, y);
                 int r = (rgb >> 16) & 0xFF;

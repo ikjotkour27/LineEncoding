@@ -35,13 +35,12 @@ public class Main {
         String decoded = "";
 
         // ANALOG SIGNAL
-        // ANALOG SIGNAL
         if (typeOfSignal.equals("analog")) {
             System.out.println("Choose analog encoding method :");
             System.out.println("1. PCM (Pulse Code Modulation)");
             System.out.println("2. DM (Delta Modulation)");
             int choice = sc.nextInt();
-            sc.nextLine(); // fix newline issue
+            sc.nextLine(); 
 
             System.out.print("Enter path of analog waveform image (e.g. input_signal.png): ");
             String imagePath = sc.nextLine().trim();
