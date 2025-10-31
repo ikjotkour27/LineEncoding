@@ -35,18 +35,29 @@ public class Main {
         String decoded = "";
 
         // ANALOG SIGNAL
+        // ANALOG SIGNAL
         if (typeOfSignal.equals("analog")) {
             System.out.println("Choose analog encoding method :");
             System.out.println("1. PCM (Pulse Code Modulation)");
             System.out.println("2. DM (Delta Modulation)");
             int choice = sc.nextInt();
+            sc.nextLine(); // fix newline issue
 
-    
-            System.out.println("\n[Simulating Analog-to-Digital conversion...]");
-            System.out.print("Enter data stream : ");
-            data = sc.nextLine();  
-            System.out.println("Generated Digital Bit Stream: " + data);
-        } 
+            System.out.print("Enter path of analog waveform image (e.g. input_signal.png): ");
+            String imagePath = sc.nextLine().trim();
+
+            if (choice == 1) {
+                data = new PCM().encode(imagePath);
+                System.out.println("PCM bitstream generated successfully.");
+            } else if (choice == 2) {
+                data = new DM().encode(imagePath);
+                System.out.println("DM bitstream generated successfully.");
+            }
+
+            System.out.println("Generated Digital Bit Stream: ");
+            System.out.println(data.substring(0, Math.min(data.length(), 200)) + "...");
+        }
+
         // DIGITAL SIGNAL
         else if (typeOfSignal.equals("digital")) {
             System.out.print("Enter data stream: ");
@@ -98,6 +109,8 @@ public class Main {
         if (encoded.contains("B8ZS") || encoded.contains("HDB3"))
             System.out.println("\nScrambled sequence generated successfully.");
 
+        WaveformDisplay.showWaveform(encoded);
+        
         // DECODE SECTION
         System.out.println("\nDo you want to decode the encoded signal? (yes/no): ");
         String ans = sc.nextLine().trim().toLowerCase();
