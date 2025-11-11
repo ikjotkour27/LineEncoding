@@ -11,6 +11,7 @@ public class Main {
         }
         return true;
     }
+    
     public static String pallindrome(String s) {
         String longest = "";
         for (int i = 0; i < s.length(); i++) {
@@ -40,7 +41,7 @@ public class Main {
             System.out.println("1. PCM (Pulse Code Modulation)");
             System.out.println("2. DM (Delta Modulation)");
             int choice = sc.nextInt();
-            sc.nextLine(); 
+            sc.nextLine(); // FIX
 
             System.out.print("Enter path of analog waveform image (e.g. input_signal.png): ");
             String imagePath = sc.nextLine().trim();
@@ -67,7 +68,7 @@ public class Main {
             return;
         }
 
-        // pallindrome
+        // PALINDROME
         String palindrome = pallindrome(data);
         System.out.println("\nLongest palindrome in input data: " + palindrome);
 
@@ -79,7 +80,7 @@ public class Main {
         System.out.println("4. Differential Manchester");
         System.out.println("5. AMI");
         int choice = sc.nextInt();
-        sc.nextLine();
+        sc.nextLine();  // FIX
 
         // SWITCH CHOICES
         switch (choice) {
@@ -88,11 +89,14 @@ public class Main {
             case 3 -> encoded = new Manchester().encode(data);
             case 4 -> encoded = new DiffManchester().encode(data);
             case 5 -> {
-                System.out.print("scrambling? (yes/no): ");
+                System.out.print("Scrambling? (yes/no): ");
                 String ans = sc.nextLine().trim().toLowerCase();
+
                 if (ans.equals("yes")) {
                     System.out.println("Select Scrambling Type:\n1. B8ZS\n2. HDB3");
                     int scr = sc.nextInt();
+                    sc.nextLine(); // FIX: very important
+
                     if (scr == 1) encoded = new B8ZS().encode(data);
                     else encoded = new HDB3().encode(data);
                 } else {
@@ -109,12 +113,11 @@ public class Main {
             System.out.println("\nScrambled sequence generated successfully.");
 
         WaveformDisplay.showWaveform(encoded);
-        
+
         // DECODE SECTION
         System.out.println("\nDo you want to decode the encoded signal? (yes/no): ");
         String ans = sc.nextLine().trim().toLowerCase();
 
-        // Will read same swit
         if (ans.equals("yes")) {
             switch (choice) {
                 case 1 -> decoded = new NRZLDecoder().decode(encoded);
@@ -135,12 +138,6 @@ public class Main {
             System.out.println(decoded);
         }
 
-
         sc.close();
     }
 }
-// This file , takes input of type of signal , 
-// then input for data 
-// type of encoding 
-// calls the encoding function 
-// and print them 

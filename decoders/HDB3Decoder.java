@@ -8,7 +8,7 @@ public class HDB3Decoder {
         int zeroCount = 0;
 
         for (String level : levels) {
-            if (level.equals("0V")) {
+            if (level.equals("0")) {
                 zeroCount++;
                 decoded.append("0");
             } else {
